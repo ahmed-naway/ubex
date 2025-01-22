@@ -6,49 +6,39 @@
 
 body {
   font-family: "Poppins", sans-serif;
+  max-width: 100vw;
+  overflow-x: hidden;
 }
 
 html {
   scroll-behavior: smooth;
 }
 
-.container {
-  margin: 0 auto;
-  padding: 0 15px;
-}
-
-@media screen and (min-width: 1400px) {
-  .container {
-    max-width: 1170px;
-  }
-}
-
-@media screen and (max-width: 992px) {
-  .container {
-    max-width: 970px;
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .container {
-    max-width: 750px;
-  }
-}
-
-@media screen and (max-width: 576px) {
-  .container {
-    max-width: 540px;
-  }
-}
-
 header {
+  width: 100%;
+
+  background-color: #fff;
+}
+
+header .container {
+  position: absolute;
+  top: 0;
+
+  position: relative;
+  height: 70px;
+}
+
+header nav {
   padding: 10px 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  overflow: hidden;
-  height: 70px;
-  z-index: 1000;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 0;
+  margin: auto;
+  width: 100%;
 }
 
 .logo {
@@ -59,18 +49,20 @@ header {
 
 nav ul {
   display: flex;
+  justify-content: center;
   list-style: none;
   z-index: 100;
 }
 
 nav ul li a {
   display: inline-block;
-  padding: 4rem 1rem;
+  padding: 3.75rem 1rem;
   text-decoration: none;
   color: #333;
   text-transform: uppercase;
   position: relative;
   overflow: hidden;
+  transition: 150ms ease-in-out;
 }
 
 nav ul .active a::after {
@@ -89,19 +81,39 @@ nav ul .active a {
   color: #fff;
 }
 
-nav ul li a:hover {
-  color: #fff;
+nav ul li:not(.active):hover a::after {
+  content: "";
+  width: 150%;
+  height: 85px;
   background-color: #49796b;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-5deg);
+  z-index: -1;
+  color: #fff;
 }
+
+nav ul li:hover a {
+  color: #fff;
+}
+
+.menu-btn {
+  display: none;
+}
+
+/* mission section */
 
 .banner {
   height: 120vh;
   width: 100vw;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  max-height: 1505px;
+  background-color: transparent;
+}
+
+.banner .container:nth-child(1) {
   position: relative;
-  z-index: -3;
+  height: 100%;
 }
 
 .banner::after {
@@ -110,7 +122,8 @@ nav ul li a:hover {
   background-size: cover;
   background-position: center;
   width: 100%;
-  height: 130%;
+  height: 160vh;
+  max-height: 1875px;
   background-color: #333;
   position: absolute;
   top: 0;
@@ -120,12 +133,11 @@ nav ul li a:hover {
 .banner .content {
   display: flex;
   flex-direction: column;
-  width: 360px;
+  width: 340px;
   position: absolute;
-  top: 35%;
-  right: 9%;
-  transform: translate(-9%, -65%);
-  z-index: 10;
+  top: 20%;
+  right: 0;
+  transition: 2000ms ease-in-out;
 }
 
 .banner h2 {
@@ -142,7 +154,7 @@ nav ul li a:hover {
   line-height: 1.5;
   text-transform: uppercase;
   font-weight: 600;
-  color: #333;
+  color: #0c0c0c;
 }
 
 .banner a {
@@ -155,6 +167,7 @@ nav ul li a:hover {
   text-transform: uppercase;
   position: relative;
   overflow: hidden;
+  transition: 200ms ease-in-out;
 }
 
 .banner a::after {
@@ -169,13 +182,23 @@ nav ul li a:hover {
   transform: translate(-50%, -50%) rotate(-5deg);
 }
 
-.services {
+.banner a:hover {
+  transform: scale(1.05);
+}
+
+/* services section */
+
+#services .container {
+  position: relative;
+}
+
+.container .services {
+  width: 100%;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
   position: absolute;
-  top: 88%;
-  left: 50%;
-  transform: translate(-50%, -12%);
+  bottom: -152px;
 }
 
 .services .service i {
@@ -185,7 +208,7 @@ nav ul li a:hover {
 }
 
 .services .service {
-  padding: 2rem 2rem 10rem;
+  padding: 2rem 2rem 5rem;
   text-align: center;
   overflow: hidden;
   position: relative;
@@ -225,7 +248,7 @@ nav ul li a:hover {
   top: 40%;
   left: 50%;
   transform: translate(-50%, -60%) rotate(-5deg);
-  z-index: -2;
+  z-index: -1;
 }
 
 .services .service:nth-child(1)::after {
@@ -243,15 +266,13 @@ nav ul li a:hover {
 /* mission section */
 
 .mission-section {
-  padding: 12rem 0;
-  z-index: -3;
+  padding: 14rem 0 12rem;
   position: relative;
-  overflow-x: hidden;
 }
 
 .mission-section ::after {
   content: "";
-  width: 110%;
+  width: 120%;
   height: 77%;
   background-color: #333;
   position: absolute;
@@ -301,6 +322,7 @@ nav ul li a:hover {
   position: relative;
   overflow: hidden;
   cursor: pointer;
+  transition: 200ms ease-in-out;
 }
 
 .mission-section a::after {
@@ -316,21 +338,27 @@ nav ul li a:hover {
   cursor: pointer;
 }
 
-.stats-section {
-  padding-top: 6rem;
-  padding-bottom: 6rem;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
-  gap: 2rem;
-  margin: auto;
-  background-color: transparent;
+.mission-section a:hover {
+  transform: scale(1.05);
+}
+
+/* .stats-section section */
+
+.container .stats-section {
+  padding-top: 3rem;
+  display: flex;
+  justify-content: center;
+  gap: 4rem;
 }
 
 .stats-section .rates {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, 160px);
   gap: 2rem;
-  padding: 0 0.75rem;
+}
+
+.status {
+  max-width: 360px;
 }
 
 .stats-section .status h2 {
@@ -365,6 +393,7 @@ nav ul li a:hover {
   text-transform: uppercase;
   position: relative;
   overflow: hidden;
+  transition: 200ms ease-in-out;
 }
 
 .stats-section .status a::after {
@@ -378,6 +407,10 @@ nav ul li a:hover {
   z-index: -1;
   transform: translate(-50%, -50%) rotate(-5deg);
   cursor: pointer;
+}
+
+.stats-section .status a:hover {
+  transform: scale(1.05);
 }
 
 .stats-section .rates h3 {
@@ -400,18 +433,19 @@ nav ul li a:hover {
 
 .stats-section .rates .stat {
   text-align: center;
-  padding: 0 3rem;
+  max-width: 180px;
 }
+
+/* testimonial section */
 
 .testimonial-section {
   padding: 14rem 0;
   position: relative;
-  overflow: hidden;
 }
 
 .testimonial-section::after {
   content: "";
-  width: 110%;
+  width: 120%;
   height: 77%;
   background-color: #49796b;
   position: absolute;
@@ -465,7 +499,8 @@ nav ul li a:hover {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   gap: 3rem 2rem;
-  padding: 6rem 0 2rem;
+  padding: 6rem auto 2rem;
+  padding-top: 6rem;
 }
 
 .footer-pre h1 {
@@ -521,7 +556,8 @@ nav ul li a:hover {
 }
 
 footer {
-  padding: 12rem 0 2rem;
+  padding: 25rem 0 2rem;
+  margin-top: -5rem;
   position: relative;
   overflow: hidden;
 }
@@ -529,10 +565,10 @@ footer {
 footer::after {
   content: "";
   width: 110%;
-  height: 80%;
+  height: 100%;
   background-color: #e6e6e6;
   position: absolute;
-  top: 73%;
+  top: 80%;
   left: 50%;
   transform: translate(-50%, -27%) rotate(-5deg);
   z-index: -2;
@@ -550,7 +586,7 @@ footer .icons {
   justify-content: center;
   align-items: center;
   position: absolute;
-  top: 95px;
+  top: 195px;
 }
 
 footer .icons i {
@@ -565,6 +601,12 @@ footer .icons i {
   z-index: 12;
   position: relative;
   cursor: pointer;
+  transition: 200ms ease-in-out;
+}
+
+footer .icons i:hover {
+  transform: scale(1.1);
+  z-index: 1000;
 }
 
 footer .icons i:nth-child(1)::after {
@@ -601,4 +643,205 @@ footer .icons i:nth-child(3)::after {
   z-index: -1;
   transform: translate(-50%, -50%) rotate(-5deg);
   background-color: #8f9779;
+}
+
+.footer-bottom {
+  position: absolute;
+  bottom: 6rem;
+}
+
+.container {
+  margin: auto;
+}
+
+@media only screen and (min-width: 1400px) {
+  .container {
+    max-width: 1270px;
+  }
+  body {
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+
+  .container .services {
+    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  .container {
+    max-width: 970px;
+  }
+  body {
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+  .mission-section {
+    padding: 12rem auto 12rem;
+    overflow: hidden;
+  }
+  .testimonial-section {
+    overflow: hidden;
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  .container {
+    max-width: 750px;
+    padding: 0 15px;
+  }
+  .menu-btn {
+    width: 40px;
+    height: 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+    transition: all 0.5s ease;
+
+    div {
+      width: 80%;
+      height: 3px;
+      border-radius: 3px;
+      background: #49796b;
+
+      position: relative;
+      transition: all 0.5s ease;
+
+      &::before,
+      &::after {
+        content: "";
+        position: absolute;
+
+        width: 50%;
+        height: 3px;
+        border-radius: 3px;
+        background: #49796b;
+
+        transition: all 0.5s ease;
+        transform-origin: center;
+      }
+
+      &::before {
+        top: -12px;
+      }
+
+      &::after {
+        top: 12px;
+        right: 0;
+      }
+    }
+  }
+
+  .close {
+    div {
+      transform: rotate(225deg);
+
+      &::before {
+        transform: rotate(90deg);
+        width: 100%;
+        top: 0px;
+      }
+
+      &::after {
+        opacity: 0;
+      }
+    }
+  }
+  header {
+    z-index: 10;
+  }
+
+  header nav ul {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    top: 67px;
+    background-color: #b7b7b7;
+    width: calc(100% - 30px);
+    overflow: hidden;
+    right: 15px;
+    height: 0;
+
+    li {
+      width: 100%;
+      text-align: center;
+      z-index: -1;
+    }
+    li a {
+      padding: 11px 32px;
+      color: #fff;
+    }
+
+    li.active {
+      background-color: #49796b;
+    }
+  }
+
+  header nav ul.active {
+    height: fit-content;
+  }
+
+  header nav ul li a::after {
+    display: none;
+  }
+
+  nav ul .active a::after {
+    display: none;
+  }
+
+  .container .services {
+    position: unset;
+  }
+
+  .banner {
+    height: 100vh;
+    max-height: 800px;
+    background-color: rgba(28, 25, 25, 0.5);
+  }
+
+  .banner::after {
+    height: 800px;
+    z-index: -1;
+  }
+
+  .banner .content {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .container .services {
+    position: unset;
+    transform: unset;
+    padding: 6rem 0 0;
+  }
+
+  .banner p {
+    color: #0c0c0c;
+  }
+  .mission-section {
+    padding: 12rem auto 12rem;
+    overflow: hidden;
+  }
+  .testimonial-section {
+    overflow: hidden;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .container {
+    max-width: 100%;
+    padding: 0 15px;
+  }
+
+  .container nav {
+    padding: 0 12px;
+  }
+
+  .container .stats-section {
+    flex-direction: column;
+    align-items: center;
+  }
 }
