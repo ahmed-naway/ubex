@@ -16,14 +16,13 @@ html {
 
 header {
   width: 100%;
-
+  z-index: 100;
   background-color: #fff;
 }
 
 header .container {
   position: absolute;
   top: 0;
-
   position: relative;
   height: 70px;
 }
@@ -751,7 +750,7 @@ footer .icons i:nth-child(3)::after {
     }
   }
   header {
-    z-index: 10;
+    z-index: 100;
   }
 
   header nav ul {
@@ -768,7 +767,6 @@ footer .icons i:nth-child(3)::after {
     li {
       width: 100%;
       text-align: center;
-      z-index: -1;
     }
     li a {
       padding: 11px 32px;
@@ -827,6 +825,22 @@ footer .icons i:nth-child(3)::after {
   }
   .testimonial-section {
     overflow: hidden;
+  }
+  header .container {
+    height: fit-content;
+    top: 35px;
+    z-index: 100;
+    position: relative;
+  }
+  header .container::after {
+    content: "";
+    position: absolute;
+    width: 100vw;
+    height: 70px;
+    background-color: #fff;
+    top: -35px;
+    z-index: -1;
+    left: 0;
   }
 }
 
