@@ -832,13 +832,17 @@ footer .icons i:nth-child(3)::after {
     z-index: 100;
     position: relative;
   }
-  header .container::after {
+
+  header {
+    position: relative;
+  }
+  header::after {
     content: "";
     position: absolute;
     width: 100vw;
     height: 70px;
     background-color: #fff;
-    top: -35px;
+    top: 0;
     z-index: -1;
     left: 0;
   }
